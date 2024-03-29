@@ -10,6 +10,7 @@ function CardTrilha({dadosTrilha}){
   )
 }
 
+
 // configuração das props types
 CardTrilha.propTypes = {
   dadosTrilha: PropTypes.exact({
