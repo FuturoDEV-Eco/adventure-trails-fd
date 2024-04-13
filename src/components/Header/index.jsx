@@ -1,12 +1,13 @@
 import styles from "./style.module.css"
+import { Link } from "react-router-dom";
 
 function Header() {
   return ( 
     <header className={styles.header}>
-      <h4>Adveture Trails FD</h4>
+      <Link to="/" className={styles.link}><h4>Adveture Trails FD</h4></Link>
       <nav className={styles.nav}>
-        <a href="#" className={styles.link}>Explorar Trilhas</a>
-        <a href="#" className={styles.link}>Cadastrar Trilhas</a>
+        <Link to="/lista-trilhas" className={styles.link}>Explorar Trilhas</Link>
+        <Link to="/cadastro-trilha" className={styles.link}>Cadastrar Trilhas</Link>
       </nav>
     </header>
   );
