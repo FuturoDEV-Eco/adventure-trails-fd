@@ -1,33 +1,28 @@
-import CardTrilha from "./components/CardTrilha"
-import "./App.css"
+import Header from "./components/Header";
+import { Outlet } from "react-router-dom";
+import { TrilhasContextProvider } from "./context/TrilhasContext";
+import { ThemeProvider, createTheme } from "@mui/material";
+
+const theme = createTheme({
+ palette: {
+  primary: {
+   main: "#504908"
+  },
+  secondary: {
+   main: "#D8E3D2"
+  }
+ }
+});
 
 function App() {
-
-  const listaTrilhas = [
-    {
-      nomeTrilha: "Trilha da Costa da Lagoa",
-      cidade: "Florianópolis",
-      estado: "SC",
-      duracao: 120,
-      trajeto: 4,
-      dificuldade: "iniciante",
-      tipo: "caminhada / trekking",
-      nomeUsuario: "Guilherme André",
-      urlImagem: "https://images.pexels.com/photos/917510/pexels-photo-917510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      // urlImagem: "./assets/imagem-trilha-exemplo.jpg"
-    }
-  ]
-
-  return (
-    <div className="container">
-      <h1 className="titulo">Explore trilhas incríveis</h1>
-      {
-        listaTrilhas.map((trilha, index) => (
-          <CardTrilha dadosTrilha={trilha} key={index} />
-        ))
-      }
-    </div>
-  )
+ return (
+  <TrilhasContextProvider>
+   <ThemeProvider theme={theme}>
+    <Header />
+    <Outlet />
+   </ThemeProvider>
+  </TrilhasContextProvider>
+ );
 }
 
-export default App
+export default App;
