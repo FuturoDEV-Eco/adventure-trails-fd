@@ -2,8 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 
 import App from "../App";
 import PaginaInicial from "../pages/PaginaInicial";
-import PaginaListaTrilhas from "../pages/PaginaListaTrilhas";
 import PaginaCadastroTrilha from "../pages/PaginaCadastro";
+import PaginaListaTrilhas from "../pages/PaginaListaTrilhas";
 
 const routes = createBrowserRouter([
  {

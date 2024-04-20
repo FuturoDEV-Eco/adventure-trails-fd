@@ -1,19 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap");
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Comfortaa", sans-serif;
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ font-family: "Comfortaa", sans-serif;
 }
 
 :root {
-  --primary: #504908;
-  --white: #ffffff;
-  --black: #181818;
+ --primary: #504908;
+ --white: #ffffff;
+ --black: #181818;
 }
 
 .container {
-  padding-top: 4em;
+ padding-top: 4em;
 }

@@ -1,8 +1,16 @@
 import { useForm } from "react-hook-form";
-import { FormComponent, InputWrapper, PageTitle } from "./styles";
+import {
+ ButtonsWrapper,
+ DoubleInput,
+ FormComponent,
+ InputWrapper,
+ PageContainer,
+ PageTitle
+} from "./styles";
 import { useContext } from "react";
 import { TrilhasContext } from "../../context/TrilhasContext";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
 
 // PASSO 1 - Importar o hook useForm e em sequência desestruturar o retorno para utilizar a função register
 // PASSO 2 - Registrar os campos incluindo a validação
@@ -28,14 +36,18 @@ function PaginaCadastroTrilha() {
    trajeto: Number(formValue.trajeto)
   });
 
-  navigate("/trilhas");
+  navigate("/lista-trilhas");
+ }
+
+ function goToHome() {
+  navigate("/");
  }
 
  return (
-  <div className="container">
+  <PageContainer>
    <PageTitle>Cadastro de nova trilha</PageTitle>
 
-   <FormComponent onSubmit={handleSubmit(sendForm)}>
+   <FormComponent>
     {/* Nome da trilha: campo de texto obrigatório com limite de 100 caracteres; */}
     <InputWrapper>
      <label htmlFor="nomeTrilha">Nome da trilha</label>
@@ -75,35 +87,37 @@ function PaginaCadastroTrilha() {
      />
     </InputWrapper>
 
-    {/* Cidade: campo de texto obrigatório com limite de 60 caracteres;; */}
-    <InputWrapper>
-     <label htmlFor="cidade">Cidade</label>
-     <input
-      type="text"
-      {...register("cidade", {
-       required: "Este campo é obrigatório",
-       maxLength: {
-        value: 60,
-        message: "Este campo aceita no máximo 60 caracteres"
-       }
-      })}
-     />
-    </InputWrapper>
+    <DoubleInput>
+     {/* Cidade: campo de texto obrigatório com limite de 60 caracteres;; */}
+     <InputWrapper>
+      <label htmlFor="cidade">Cidade</label>
+      <input
+       type="text"
+       {...register("cidade", {
+        required: "Este campo é obrigatório",
+        maxLength: {
+         value: 60,
+         message: "Este campo aceita no máximo 60 caracteres"
+        }
+       })}
+      />
+     </InputWrapper>
 
-    {/* Estado:  campo de texto obrigatório com limite de 2 caracteres; */}
-    <InputWrapper>
-     <label htmlFor="estado">Estado</label>
-     <input
-      type="text"
-      {...register("estado", {
-       required: "Este campo é obrigatório",
-       maxLength: {
-        value: 2,
-        message: "Este campo aceita no máximo 2 caracteres"
-       }
-      })}
-     />
-    </InputWrapper>
+     {/* Estado:  campo de texto obrigatório com limite de 2 caracteres; */}
+     <InputWrapper>
+      <label htmlFor="estado">Estado</label>
+      <input
+       type="text"
+       {...register("estado", {
+        required: "Este campo é obrigatório",
+        maxLength: {
+         value: 2,
+         message: "Este campo aceita no máximo 2 caracteres"
+        }
+       })}
+      />
+     </InputWrapper>
+    </DoubleInput>
 
     {/* Nome completo usuário:  campo de texto; */}
     <InputWrapper>
@@ -120,32 +134,34 @@ function PaginaCadastroTrilha() {
      />
     </InputWrapper>
 
-    {/* Dificuldade:  campo de select. */}
-    <InputWrapper>
-     <label htmlFor="dificuldade">Dificuldade</label>
-     <select
-      {...register("dificuldade", {
-       required: "Este campo é obrigatório"
-      })}>
-      <option value="">Selecione uma dificuldade</option>
-      <option value="Iniciante">Iniciante</option>
-      <option value="Intermediário">Intermediário</option>
-      <option value="Difícil">Difícil</option>
-     </select>
-    </InputWrapper>
+    <DoubleInput>
+     {/* Dificuldade:  campo de select. */}
+     <InputWrapper>
+      <label htmlFor="dificuldade">Dificuldade</label>
+      <select
+       {...register("dificuldade", {
+        required: "Este campo é obrigatório"
+       })}>
+       <option value="">Selecione uma dificuldade</option>
+       <option value="Iniciante">Iniciante</option>
+       <option value="Intermediário">Intermediário</option>
+       <option value="Difícil">Difícil</option>
+      </select>
+     </InputWrapper>
 
-    {/* Tipo de trilha:  campo de select; */}
-    <InputWrapper>
-     <label htmlFor="tipo">Tipo de trilha</label>
-     <select
-      {...register("tipo", {
-       required: "Este campo é obrigatório"
-      })}>
-      <option value="">Selecione o tipo da trilha</option>
-      <option value="caminhada / trekking">Caminhada/Trekking</option>
-      <option value="ciclismo">Ciclismo</option>
-     </select>
-    </InputWrapper>
+     {/* Tipo de trilha:  campo de select; */}
+     <InputWrapper>
+      <label htmlFor="tipo">Tipo de trilha</label>
+      <select
+       {...register("tipo", {
+        required: "Este campo é obrigatório"
+       })}>
+       <option value="">Selecione o tipo da trilha</option>
+       <option value="caminhada / trekking">Caminhada/Trekking</option>
+       <option value="ciclismo">Ciclismo</option>
+      </select>
+     </InputWrapper>
+    </DoubleInput>
 
     {/* URL imagem da trilha:  campo de texto; */}
     <InputWrapper>
@@ -162,12 +178,17 @@ function PaginaCadastroTrilha() {
      />
     </InputWrapper>
 
-    <div>
-     <button type="submit">Cadastrar</button>
-     <button>Voltar</button>
-    </div>
+    <ButtonsWrapper>
+     <Button variant="contained" type="button" onClick={handleSubmit(sendForm)}>
+      Cadastrar
+     </Button>
+
+     <Button variant="outlined" type="button" onClick={() => goToHome()}>
+      Voltar para a home
+     </Button>
+    </ButtonsWrapper>
    </FormComponent>
-  </div>
+  </PageContainer>
  );
 }
 
